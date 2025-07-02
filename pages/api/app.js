@@ -1,7 +1,9 @@
+import Head from 'next/head';
+
 export default function AppRedirect() {
   return (
-    <html>
-      <head>
+    <div>
+      <Head>
         <title>Nynii App Redirect</title>
         <script
           dangerouslySetInnerHTML={{
@@ -17,11 +19,11 @@ export default function AppRedirect() {
             `,
           }}
         />
-      </head>
-      <body>
-        <p>Redirecting to Nynii App...</p>
-      </body>
-    </html>
+      </Head>
+      <main style={{ textAlign: 'center', fontFamily: 'sans-serif' }}>
+        <p>Redirecting you to the Nynii App...</p>
+      </main>
+    </div>
   );
 }
 
