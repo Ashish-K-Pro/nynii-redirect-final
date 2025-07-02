@@ -1,20 +1,18 @@
 export async function getServerSideProps({ req, res }) {
-  const ua = req.headers['user-agent']?.toLowerCase() || "";
-
-  let redirectUrl = 'https://nynii.com'; // default fallback
+  const ua = req.headers['user-agent']?.toLowerCase() || '';
 
   if (ua.includes('android')) {
-    redirectUrl = 'https://play.google.com/store/apps/details?id=com.nynii.app';
+    res.writeHead(302, { Location: 'https://play.google.com/store/apps/details?id=com.nynii.app' });
   } else if (ua.includes('iphone') || ua.includes('ipad') || ua.includes('ipod')) {
-    redirectUrl = 'https://apps.apple.com/in/app/nynii/id6746144979';
+    res.writeHead(302, { Location: 'https://apps.apple.com/in/app/nynii/id6746144979' });
+  } else {
+    res.writeHead(302, { Location: 'https://nynii.com' });
   }
-
-  res.writeHead(302, { Location: redirectUrl });
   res.end();
 
   return { props: {} };
 }
 
 export default function Home() {
-  return null; // Never rendered because we redirect immediately
+  return null; // Nothing renders because redirect happens before HTML generation
 }
